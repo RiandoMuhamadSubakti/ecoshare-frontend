@@ -1,35 +1,50 @@
 /* ============================================
    GLOBAL CSS - Eco-Share Frontend
-   Dibuat oleh: Riando Muhamad Subakti - UNDIRA
+   Dibuat oleh: Riando Muhamad Subakti
+   Universitas Dian Nusantara
 ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --primary: #db2777;
-  --primary-light: #ec4899;
-  --primary-dark: #9d174d;
-  --accent: #f9a8d4;
-  --bg: #0f0810;
-  --bg-card: #1a0d1c;
-  --bg-card2: #22102a;
-  --text: #f0eeff;
-  --text-muted: #8b89b8;
-  --border: rgba(219, 39, 119, 0.25);
-  --success: #22d3a0;
-  --danger: #f43f5e;
-  --warning: #fbbf24;
-  --radius: 14px;
-  --shadow: 0 8px 32px rgba(219, 39, 119, 0.2);
+  --primary:        #7c3aed;
+  --primary-light:  #a855f7;
+  --primary-dark:   #5b21b6;
+  --accent:         #c084fc;
+  --accent-dim:     rgba(124, 58, 237, 0.18);
+  --bg:             #08081a;
+  --bg-card:        #12122a;
+  --bg-card2:       #1a1a38;
+  --text:           #f0eeff;
+  --text-muted:     #8b89b8;
+  --border:         rgba(124, 58, 237, 0.25);
+  --success:        #22d3a0;
+  --danger:         #f43f5e;
+  --warning:        #fbbf24;
+  --info:           #38bdf8;
+  --radius:         14px;
+  --shadow:         0 8px 32px rgba(124, 58, 237, 0.2);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 5% 15%, rgba(124,58,237,0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 35% at 95% 85%, rgba(168,85,247,0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -51,16 +66,20 @@ a { text-decoration: none; color: inherit; }
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
   color: white;
-  box-shadow: 0 4px 18px rgba(219, 39, 119, 0.35);
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(219,39,119,0.5); }
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+}
 .btn-ghost {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
 }
-.btn-ghost:hover { background: rgba(219,39,119,0.12); }
-.btn-danger { background: linear-gradient(135deg, #be123c, #f43f5e); color: white; }
+.btn-ghost:hover { background: var(--accent-dim); border-color: var(--primary); }
+.btn-danger  { background: linear-gradient(135deg, #be123c, #f43f5e); color: white; }
+.btn-success { background: linear-gradient(135deg, #059669, #22d3a0); color: white; }
 .btn-sm { padding: 0.35rem 0.9rem; font-size: 0.78rem; }
 
 /* BADGE */
@@ -73,15 +92,8 @@ a { text-decoration: none; color: inherit; }
 .badge-success { background: rgba(34,211,160,0.15); color: var(--success); border: 1px solid rgba(34,211,160,0.3); }
 .badge-warning { background: rgba(251,191,36,0.15); color: var(--warning); border: 1px solid rgba(251,191,36,0.3); }
 .badge-danger  { background: rgba(244,63,94,0.15);  color: var(--danger);  border: 1px solid rgba(244,63,94,0.3); }
-.badge-pink    { background: rgba(219,39,119,0.15); color: var(--accent);  border: 1px solid var(--border); }
-
-/* CARD */
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-}
+.badge-info    { background: rgba(56,189,248,0.15); color: var(--info);    border: 1px solid rgba(56,189,248,0.3); }
+.badge-purple  { background: rgba(124,58,237,0.15); color: var(--accent);  border: 1px solid var(--border); }
 
 /* FORM */
 .form-group { margin-bottom: 1rem; }
@@ -109,9 +121,10 @@ a { text-decoration: none; color: inherit; }
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .form-group input:focus,
-.form-group select:focus {
+.form-group select:focus,
+.form-group textarea:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(219,39,119,0.15);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
 }
 .form-group select option { background: var(--bg-card); }
 
@@ -126,13 +139,18 @@ a { text-decoration: none; color: inherit; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* EMPTY STATE */
+.empty { text-align: center; padding: 3rem 1rem; color: var(--text-muted); }
+.empty-icon { font-size: 2.8rem; margin-bottom: 0.8rem; }
+
 /* WATERMARK */
 .watermark {
   position: fixed;
   bottom: 0.6rem;
   left: 0.6rem;
   font-size: 0.65rem;
-  color: rgba(219,39,119,0.3);
+  color: rgba(124, 58, 237, 0.35);
   pointer-events: none;
   z-index: 9999;
+  font-family: 'DM Sans', sans-serif;
 }

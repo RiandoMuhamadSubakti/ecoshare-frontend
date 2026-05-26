@@ -1,5 +1,5 @@
 // ============================================
-// MAIN.JS - Entry Point Aplikasi
+// MAIN.JS - Entry Point Aplikasi Vue.js
 // Dibuat oleh: Riando Muhamad Subakti
 // Universitas Dian Nusantara
 // ============================================
